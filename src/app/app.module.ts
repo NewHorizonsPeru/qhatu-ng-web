@@ -7,11 +7,27 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './core/material/material.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutComponent } from './core/layout/layout.component';
+import { ProductComponent } from './product/product.component';
+import { SalesComponent } from './sales/sales.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, MaterialModule, FormsModule],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    LayoutComponent,
+    ProductComponent,
+    SalesComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    FormsModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
