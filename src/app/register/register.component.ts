@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { SecurityService } from '../core/services/security.service';
 
 @Component({
@@ -13,12 +15,18 @@ import { SecurityService } from '../core/services/security.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
+  @ViewChild('modalTemplate')
+  modalTemplateRef!: TemplateRef<any>;
   newUserFormGroup: FormGroup;
+  roles: any;
+  matDialogMessage = '';
   constructor(
     private formBuilder: FormBuilder,
-    private securityService: SecurityService
+    private securityService: SecurityService,
+    private matDialog: MatDialog,
+    private router: Router
   ) {
-    this.callObsevableOfNumbers();
+    this.getRoles();
     this.newUserFormGroup = this.formBuilder.group({
       firstName: new FormControl(
         '',
@@ -48,10 +56,28 @@ export class RegisterComponent {
     });
   }
 
+  getRoles() {
+    this.securityService.getRoles().subscribe({
+      next: (values: any) => {
+        this.roles = values;
+      },
+      complete: () => {
+        console.log('Observable Complete.');
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
   onNewUser(formGroup: any) {
     console.log(formGroup);
     this.securityService.signUp(formGroup).subscribe({
       next: (response) => {
+        if (response) {
+          this.matDialogMessage = 'Usuario registrado correctamente.';
+          this.openMatDialog();
+        }
         console.log(response);
       },
       error: (error) => {
@@ -60,18 +86,12 @@ export class RegisterComponent {
     });
   }
 
-  callObsevableOfNumbers() {
-    const observador = {
-      next: (value: any) => {
-        console.log(value);
+  openMatDialog() {
+    const currentMatDialog = this.matDialog.open(this.modalTemplateRef);
+    currentMatDialog.afterClosed().subscribe({
+      next: () => {
+        this.router.navigateByUrl('/login');
       },
-      complete: () => {
-        console.log('Observable Complete!');
-      },
-      error: (error: any) => {
-        console.log(error);
-      },
-    };
-    this.securityService.getNumbers().subscribe(observador);
+    });
   }
 }

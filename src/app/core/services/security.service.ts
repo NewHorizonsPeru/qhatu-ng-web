@@ -19,27 +19,4 @@ export class SecurityService {
       `${environment.apiQhatu.baseUrl}${environment.apiQhatu.getRoles}`
     );
   }
-
-  getNumbers() {
-    const onClick$ = fromEvent(document, 'click');
-    onClick$.subscribe({
-      next: (event: any) => {
-        console.log(event.key);
-      },
-    });
-
-    const observableOfNumbers$ = new Observable((sub) => {
-      sub.next(24);
-      sub.next(30);
-      sub.next(100);
-      sub.next(299);
-      sub.next(35);
-      sub.next(3330);
-
-      sub.complete();
-      sub.next(25);
-    });
-
-    return observableOfNumbers$;
-  }
 }
