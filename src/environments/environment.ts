@@ -6,4 +6,12 @@ export const environment = {
     signUpPath: 'security/signUp',
     getRoles: 'security/getRoles',
   },
+  webStorage: {
+    tokenKey: 'QHATU_TOKEN',
+    userKey: 'QHATU_USER',
+  },
+  jwtConfig: {
+    keyValueHeader: 'Authorization',
+    keyToken: 'Bearer',
+  },
 };

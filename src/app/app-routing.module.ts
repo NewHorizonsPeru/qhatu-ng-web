@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PrivateGuard } from './core/guards/private.guard';
+import { PublicGuard } from './core/guards/public.guard';
 import { LayoutComponent } from './core/layout/layout.component';
 import { LoginComponent } from './login/login.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 import { ProductComponent } from './product/product.component';
 import { RegisterComponent } from './register/register.component';
 import { SalesComponent } from './sales/sales.component';
@@ -19,20 +22,28 @@ const routes: Routes = [
       {
         path: 'products',
         component: ProductComponent,
+        canActivate: [PrivateGuard],
       },
       {
         path: 'sales',
         component: SalesComponent,
+        canActivate: [PrivateGuard],
       },
     ],
   },
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [PublicGuard],
   },
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [PublicGuard],
+  },
+  {
+    path: '**',
+    component: NotfoundComponent,
   },
 ];
 

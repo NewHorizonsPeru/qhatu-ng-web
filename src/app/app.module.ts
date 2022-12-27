@@ -12,7 +12,12 @@ import { LayoutComponent } from './core/layout/layout.component';
 import { ProductComponent } from './product/product.component';
 import { SalesComponent } from './sales/sales.component';
 import { SecurityService } from './core/services/security.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NotfoundComponent } from './notfound/notfound.component';
+import {
+  JwtInterceptor,
+  JwtInterceptorProvider,
+} from './core/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     ProductComponent,
     SalesComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [JwtInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

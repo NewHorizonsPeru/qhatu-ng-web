@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,7 +14,7 @@ import { SecurityService } from '../core/services/security.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   @ViewChild('modalTemplate')
   modalTemplateRef!: TemplateRef<any>;
   newUserFormGroup: FormGroup;
@@ -26,7 +26,6 @@ export class RegisterComponent {
     private matDialog: MatDialog,
     private router: Router
   ) {
-    this.getRoles();
     this.newUserFormGroup = this.formBuilder.group({
       firstName: new FormControl(
         '',
@@ -54,6 +53,9 @@ export class RegisterComponent {
       ),
       role: new FormControl('', Validators.compose([Validators.required])),
     });
+  }
+  ngOnInit(): void {
+    this.getRoles();
   }
 
   getRoles() {

@@ -8,10 +8,20 @@
           alt="logo"
         />
       </mat-card-header>
-      <form name="form">
+      <form
+        name="form"
+        [formGroup]="loginFormGroup"
+        (ngSubmit)="onSignIn(loginFormGroup.value)"
+      >
         <mat-card-content>
           <mat-form-field class="public-form-full-width">
-            <input matInput placeholder="Usuario" name="email" type="email" />
+            <input
+              matInput
+              placeholder="Correo Electrónico"
+              name="email"
+              type="email"
+              formControlName="email"
+            />
           </mat-form-field>
           <mat-form-field class="public-form-full-width">
             <input
@@ -19,17 +29,28 @@
               placeholder="Contraseña"
               name="password"
               type="password"
+              formControlName="password"
             />
           </mat-form-field>
         </mat-card-content>
         <mat-card-content>
-          <button mat-raised-button color="primary" class="btn-block">
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn-block"
+            [disabled]="!loginFormGroup.valid"
+          >
             <mat-icon>login</mat-icon> Ingresar
           </button>
         </mat-card-content>
       </form>
       <mat-card-content>
-        <a mat-raised-button color="accent" class="btn-block">
+        <a
+          mat-raised-button
+          color="accent"
+          class="btn-block"
+          (click)="redirectToRegister()"
+        >
           <mat-icon>person_add</mat-icon> Registrar
         </a>
       </mat-card-content>

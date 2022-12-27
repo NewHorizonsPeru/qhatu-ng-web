@@ -19,4 +19,11 @@ export class SecurityService {
       `${environment.apiQhatu.baseUrl}${environment.apiQhatu.getRoles}`
     );
   }
+
+  signIn(userToLogin: any) {
+    return this.httpClient.post(
+      `${environment.apiQhatu.baseUrl}${environment.apiQhatu.signInPath}`,
+      userToLogin
+    );
+  }
 }
