@@ -71,27 +71,32 @@ export class RegisterComponent {
   }
 
   onNewUser(formGroup: any) {
-    console.log(formGroup);
     this.securityService.signUp(formGroup).subscribe({
       next: (response) => {
         if (response) {
           this.matDialogMessage = 'Usuario registrado correctamente.';
-          this.openMatDialog();
+          this.openMatDialog(true);
         }
-        console.log(response);
       },
       error: (error) => {
         console.log(error);
+        if (error && error.status === 404) {
+          this.matDialogMessage =
+            'El correo ingresado ya se encuentra registado, intente con otro.';
+          this.openMatDialog();
+        }
       },
     });
   }
 
-  openMatDialog() {
+  openMatDialog(success = false) {
     const currentMatDialog = this.matDialog.open(this.modalTemplateRef);
-    currentMatDialog.afterClosed().subscribe({
-      next: () => {
-        this.router.navigateByUrl('/login');
-      },
-    });
+    if (success) {
+      currentMatDialog.afterClosed().subscribe({
+        next: () => {
+          this.router.navigateByUrl('/login');
+        },
+      });
+    }
   }
 }
