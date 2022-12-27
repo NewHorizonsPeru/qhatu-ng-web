@@ -18,6 +18,7 @@ export class RegisterComponent {
     private formBuilder: FormBuilder,
     private securityService: SecurityService
   ) {
+    this.callObsevableOfNumbers();
     this.newUserFormGroup = this.formBuilder.group({
       firstName: new FormControl(
         '',
@@ -57,5 +58,20 @@ export class RegisterComponent {
         console.log(error);
       },
     });
+  }
+
+  callObsevableOfNumbers() {
+    const observador = {
+      next: (value: any) => {
+        console.log(value);
+      },
+      complete: () => {
+        console.log('Observable Complete!');
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    };
+    this.securityService.getNumbers().subscribe(observador);
   }
 }
