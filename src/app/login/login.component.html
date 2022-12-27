@@ -1,37 +1,38 @@
-<div class="login-wrapper">
-  <mat-card>
-    <mat-card-header>
-      <img
-        mat-card-sm-image
-        src="https://cdn-icons-png.flaticon.com/128/6769/6769119.png"
-        alt="Qhatu"
-      />
-      <h1 class="">Qhatu</h1>
-    </mat-card-header>
-    <form name="form">
+<mat-grid-list cols="1" rows="1" rowHeight="2:1" class="login-wrapper">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <img
+          mat-card-sm-image
+          src="https://cdn-icons-png.flaticon.com/128/6769/6769119.png"
+          alt="logo"
+        />
+      </mat-card-header>
+      <form name="form">
+        <mat-card-content>
+          <mat-form-field class="public-form-full-width">
+            <input matInput placeholder="Usuario" name="email" type="email" />
+          </mat-form-field>
+          <mat-form-field class="public-form-full-width">
+            <input
+              matInput
+              placeholder="Contraseña"
+              name="password"
+              type="password"
+            />
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-content>
+          <button mat-raised-button color="primary" class="btn-block">
+            <mat-icon>login</mat-icon> Ingresar
+          </button>
+        </mat-card-content>
+      </form>
       <mat-card-content>
-        <mat-form-field class="public-form-full-width">
-          <input matInput placeholder="Usuario" name="email" type="email" />
-        </mat-form-field>
-        <mat-form-field class="public-form-full-width">
-          <input
-            matInput
-            placeholder="Contraseña"
-            name="password"
-            type="password"
-          />
-        </mat-form-field>
+        <a mat-raised-button color="accent" class="btn-block">
+          <mat-icon>person_add</mat-icon> Registrar
+        </a>
       </mat-card-content>
-      <mat-card-content>
-        <button mat-raised-button color="primary" class="btn-block">
-          <mat-icon>login</mat-icon> Ingresar
-        </button>
-      </mat-card-content>
-    </form>
-    <mat-card-content>
-      <a mat-raised-button color="accent" class="btn-block">
-        <mat-icon>person_add</mat-icon> Registrar
-      </a>
-    </mat-card-content>
-  </mat-card>
-</div>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
