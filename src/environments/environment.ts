@@ -5,6 +5,7 @@ export const environment = {
     signInPath: 'security/signIn',
     signUpPath: 'security/signUp',
     getRoles: 'security/getRoles',
+    getProducts: 'product',
   },
   webStorage: {
     tokenKey: 'QHATU_TOKEN',

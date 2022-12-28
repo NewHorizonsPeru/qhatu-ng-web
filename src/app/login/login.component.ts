@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { SecurityService } from '../core/services/security.service';
 import { TokenService } from '../core/services/token.service';
+import { ProductService } from '../core/services/product.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent {
     private matSnackBar: MatSnackBar,
     private matDialog: MatDialog,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private productService: ProductService
   ) {
     this.loginFormGroup = this.formBuilder.group({
       email: new FormControl(
