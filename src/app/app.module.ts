@@ -21,6 +21,7 @@ import {
   RECAPTCHA_SETTINGS,
 } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
+import { DetailProductComponent } from './detail-product/detail-product.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { environment } from 'src/environments/environment';
     ProductComponent,
     SalesComponent,
     NotfoundComponent,
+    DetailProductComponent,
   ],
   imports: [
     BrowserModule,

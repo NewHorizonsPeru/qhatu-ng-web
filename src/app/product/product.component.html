@@ -1,21 +1,26 @@
-<mat-toolbar color="accent">
-  <button mat-button fxHide.lt-md>
-    <mat-icon>arrow_back_ios</mat-icon>
-  </button>
+<mat-toolbar
+  color="accent"
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  "
+>
   <span>Productos</span>
-  <button mat-button fxHide.lt-md>
-    <mat-icon>arrow_forward_ios</mat-icon>
-  </button>
 </mat-toolbar>
-<div>
-  <mat-card class="product-card" *ngFor="let product of products">
-    <img
-      mat-card-image
-      src="https://falabella.scene7.com/is/image/FalabellaPE/18523360_1?wid=1500&hei=1500&qlt=70"
-    />
-    <mat-card-content>
-      <h2>title</h2>
-      <p>price</p>
-    </mat-card-content>
-  </mat-card>
-</div>
+<mat-grid-list cols="4" rowHeight="550px">
+  <mat-grid-tile *ngFor="let product of products">
+    <mat-card class="product-card">
+      <img
+        mat-card-image
+        [src]="product.imageUrl"
+        [routerLink]="['/product/' + product.id]"
+      />
+      <mat-card-content>
+        <h2>S/{{ product.name | slice : 0 : 30 }}...</h2>
+        <p>S/{{ product.price }}</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

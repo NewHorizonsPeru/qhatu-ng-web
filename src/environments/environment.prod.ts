@@ -5,6 +5,7 @@ export const environment = {
     signInPath: 'security/signIn',
     signUpPath: 'security/signUp',
     getRoles: 'security/getRoles',
+    getProducts: 'product',
   },
   webStorage: {
     tokenKey: 'QHATU_TOKEN',
@@ -14,8 +15,8 @@ export const environment = {
     keyValueHeader: 'Authorization',
     keyToken: 'Bearer',
   },
-  reCaptchaConfig: {
-    keyWebSite: '6LfDuLEjAAAAAId6A5mb4NLCsK9IooZrInPpuccV',
-    keySecret: '6LfDuLEjAAAAALfEXjh4KJvQFxjJp5hOoAtrs0Gp',
+  recaptchaConfig: {
+    keyWeb: '6Lei87EjAAAAALs93Hn8dS5lXNWqbrPneeJ7KHdH',
+    keyApi: '6Lei87EjAAAAAJAK3J3Sj2DHRXVjoayjh-6T2aCc',
   },
 };
