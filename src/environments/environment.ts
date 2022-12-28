@@ -14,8 +14,4 @@ export const environment = {
     keyValueHeader: 'Authorization',
     keyToken: 'Bearer',
   },
-  reCaptchaConfig: {
-    keyWebSite: '6LfDuLEjAAAAAId6A5mb4NLCsK9IooZrInPpuccV',
-    keySecret: '6LfDuLEjAAAAALfEXjh4KJvQFxjJp5hOoAtrs0Gp',
-  },
 };
