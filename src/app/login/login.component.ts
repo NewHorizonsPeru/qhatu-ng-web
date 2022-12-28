@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SecurityService } from '../core/services/security.service';
 import { TokenService } from '../core/services/token.service';
 import { ProductService } from '../core/services/product.service';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-login',
@@ -26,8 +27,7 @@ export class LoginComponent {
     private matSnackBar: MatSnackBar,
     private matDialog: MatDialog,
     private router: Router,
-    private tokenService: TokenService,
-    private productService: ProductService
+    private tokenService: TokenService
   ) {
     this.loginFormGroup = this.formBuilder.group({
       email: new FormControl(
@@ -46,6 +46,7 @@ export class LoginComponent {
           Validators.maxLength(20),
         ])
       ),
+      reCaptcha: new FormControl('', Validators.compose([Validators.required])),
     });
   }
 

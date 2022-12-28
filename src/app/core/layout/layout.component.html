@@ -11,12 +11,14 @@
     Qhatu
   </a>
   <span class="push-spacer"></span>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-  >
-    <mat-icon>logout</mat-icon>
+  <button mat-icon-button [matMenuTriggerFor]="matMenu">
+    <mat-icon>more_vert</mat-icon>
   </button>
+  <mat-menu #matMenu>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar Sesión</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>

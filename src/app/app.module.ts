@@ -11,13 +11,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './core/layout/layout.component';
 import { ProductComponent } from './product/product.component';
 import { SalesComponent } from './sales/sales.component';
-import { SecurityService } from './core/services/security.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { JwtInterceptorProvider } from './core/interceptors/jwt.interceptor';
 import {
-  JwtInterceptor,
-  JwtInterceptorProvider,
-} from './core/interceptors/jwt.interceptor';
+  RecaptchaFormsModule,
+  RecaptchaModule,
+  RecaptchaSettings,
+  RECAPTCHA_SETTINGS,
+} from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,9 +39,19 @@ import {
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     HttpClientModule,
   ],
-  providers: [JwtInterceptorProvider],
+  providers: [
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptchaConfig.keyWeb,
+      } as RecaptchaSettings,
+    },
+    JwtInterceptorProvider,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

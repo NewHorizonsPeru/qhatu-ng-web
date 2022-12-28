@@ -20,12 +20,7 @@ export class JwtInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     let newRequest = request;
     const currentToken = this.tokenService.getToken();
-    console.log(currentToken);
     if (currentToken !== null) {
-      console.log(
-        environment.jwtConfig.keyValueHeader,
-        `${environment.jwtConfig.keyToken} ${currentToken}`
-      );
       newRequest = request.clone({
         headers: request.headers.set(
           environment.jwtConfig.keyValueHeader,
