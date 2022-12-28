@@ -11,6 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { SecurityService } from '../core/services/security.service';
 import { TokenService } from '../core/services/token.service';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { ReCaptchaService } from '../core/services/recaptcha.service';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +21,16 @@ import { TokenService } from '../core/services/token.service';
 })
 export class LoginComponent {
   loginFormGroup: FormGroup;
+  token: string | undefined;
   constructor(
     private formBuilder: FormBuilder,
     private securityService: SecurityService,
     private matSnackBar: MatSnackBar,
     private matDialog: MatDialog,
     private router: Router,
-    private tokenService: TokenService
+    private recaptchaV3Service: ReCaptchaV3Service,
+    private tokenService: TokenService,
+    private recaptchaService: ReCaptchaService
   ) {
     this.loginFormGroup = this.formBuilder.group({
       email: new FormControl(
@@ -48,7 +53,17 @@ export class LoginComponent {
   }
 
   onSignIn(userToLogin: any) {
-    this.securityService.signIn(userToLogin).subscribe({
+    console.log(userToLogin);
+    this.recaptchaV3Service.execute('').subscribe((token) => {
+      console.log(token);
+      this.recaptchaService.validateCaptcha(token).subscribe({
+        next: (value) => {
+          console.log(value);
+        },
+      });
+    });
+
+    /**this.securityService.signIn(userToLogin).subscribe({
       next: (value: any) => {
         if (value) {
           this.tokenService.saveToken(value.token);
@@ -65,7 +80,7 @@ export class LoginComponent {
           });
         }
       },
-    });
+    });**/
   }
 
   redirectToRegister() {
